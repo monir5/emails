@@ -34,7 +34,7 @@ public class EmailController {
     })
     @PostMapping("/create")
     public ResponseEntity<Email> create(@Parameter(description = "the full content of an Email", schema = @Schema(implementation = Email.class)) @RequestBody Email email) {
-        return new ResponseEntity<Email>(emailService.create(email), HttpStatus.CREATED);
+        return new ResponseEntity<>(emailService.create(email), HttpStatus.CREATED);
     }
 
     @Operation(summary = "Bulk insert of Emails", tags = {"Create"})
@@ -59,7 +59,7 @@ public class EmailController {
     })
     @PutMapping("/update/{emailId}")
     public ResponseEntity<Email> update(@PathVariable Long emailId, @RequestBody EmailUpdateDTO emailUpdateDTO) {
-        return new ResponseEntity<Email>(emailService.update(emailId, emailUpdateDTO), HttpStatus.OK);
+        return new ResponseEntity<>(emailService.update(emailId, emailUpdateDTO), HttpStatus.OK);
     }
 
     @Operation(summary = "Delete an Email", tags = {"Delete"})
@@ -105,7 +105,7 @@ public class EmailController {
         if (emailOptional.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<Email>(emailOptional.get(), HttpStatus.OK);
+        return new ResponseEntity<>(emailOptional.get(), HttpStatus.OK);
     }
 
     @Operation(summary = "Get all Emails by email-from", tags = {"Read"})
@@ -115,6 +115,6 @@ public class EmailController {
     })
     @GetMapping("/query/from/{emailFrom}")
     public ResponseEntity<List<Email>> findAllByFrom(@PathVariable String emailFrom) {
-        return new ResponseEntity<List<Email>>(emailService.findAllByFrom(emailFrom), HttpStatus.OK);
+        return new ResponseEntity<>(emailService.findAllByFrom(emailFrom), HttpStatus.OK);
     }
 }
