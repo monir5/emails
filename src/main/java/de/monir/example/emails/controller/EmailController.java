@@ -55,8 +55,8 @@ public class EmailController {
             @ApiResponse(responseCode = "400", description = "Invalid Email-Id or Email content supplied", content = @Content),
             @ApiResponse(responseCode = "404", description = "Email not found", content = @Content)
     })
-    @PutMapping("/update")
-    public ResponseEntity<Email> update(Long emailId, @RequestBody EmailUpdateDTO emailUpdateDTO) {
+    @PutMapping("/update/{emailId}")
+    public ResponseEntity<Email> update(@PathVariable Long emailId, @RequestBody EmailUpdateDTO emailUpdateDTO) {
         return new ResponseEntity<Email>(emailService.update(emailId, emailUpdateDTO), HttpStatus.OK);
     }
 
