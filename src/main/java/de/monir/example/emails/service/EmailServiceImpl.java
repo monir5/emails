@@ -2,6 +2,7 @@ package de.monir.example.emails.service;
 
 import de.monir.example.emails.dto.EmailUpdateDTO;
 import de.monir.example.emails.exception.EmailNotFoundException;
+import de.monir.example.emails.mapper.EmailMapper;
 import de.monir.example.emails.model.Email;
 import de.monir.example.emails.model.State;
 import de.monir.example.emails.repository.EmailRepository;
@@ -14,6 +15,7 @@ import java.util.List;
 public class EmailServiceImpl implements EmailService{
 
     private final EmailRepository emailRepository;
+    private final EmailMapper emailMapper;
 
     @Override
     public Email create(Email email) {
@@ -28,16 +30,7 @@ public class EmailServiceImpl implements EmailService{
     @Override
     public Email update(Long emailId, EmailUpdateDTO emailUpdateDTO) {
         if (emailRepository.existsById(emailId) && State.DRAFT.equals(emailUpdateDTO.getState())) {
-            //TODO: Mapping should be done.
-            Email email = new Email();
-            email.setId(emailId);
-            email.setState(State.DRAFT);
-            email.setFrom(emailUpdateDTO.getFrom());
-            email.setEmailTo(emailUpdateDTO.getEmailTo());
-            email.setEmailCC(emailUpdateDTO.getEmailCC());
-            email.setSubject(emailUpdateDTO.getSubject());
-            email.setBody(emailUpdateDTO.getBody());
-            email.setState(emailUpdateDTO.getState());
+            Email email = emailMapper.emailUpdateDTOToEmail(emailUpdateDTO);
             return emailRepository.save(email);
         }
         throw new EmailNotFoundException();
