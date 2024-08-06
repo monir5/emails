@@ -14,8 +14,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/emails")
@@ -80,5 +82,39 @@ public class EmailController {
     public ResponseEntity<?> deleteBulk(@RequestBody List<Long> emailIds) {
         emailService.deleteBulk(emailIds);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @Operation(summary = "Get all Emails", tags = {"Read"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = " All Emails", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Email not found", content = @Content)
+    })
+    @GetMapping("/all")
+    public ResponseEntity<List<Email>> findAll() {
+        return new ResponseEntity<>(emailService.findAll(), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Get an Email", tags = {"Read"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = " An Email by email-ID", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Email not found", content = @Content)
+    })
+    @GetMapping("/{emailId}")
+    public ResponseEntity<Email> findById(@PathVariable Long emailId) {
+        Optional<Email> emailOptional = emailService.findById(emailId);
+        if (emailOptional.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Email>(emailOptional.get(), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Get all Emails by email-from", tags = {"Read"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = " All Emails by email-from", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Email not found", content = @Content)
+    })
+    @GetMapping("/query/from/{emailFrom}")
+    public ResponseEntity<List<Email>> findAllByFrom(@PathVariable String emailFrom) {
+        return new ResponseEntity<List<Email>>(emailService.findAllByFrom(emailFrom), HttpStatus.OK);
     }
 }

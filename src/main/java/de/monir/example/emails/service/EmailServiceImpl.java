@@ -9,6 +9,7 @@ import de.monir.example.emails.repository.EmailRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -50,5 +51,20 @@ public class EmailServiceImpl implements EmailService{
             emailRepository.deleteAllById(emailIds);
         }
         throw new EmailNotFoundException();
+    }
+
+    @Override
+    public List<Email> findAll() {
+        return emailRepository.findAll();
+    }
+
+    @Override
+    public Optional<Email> findById(Long id) {
+        return emailRepository.findById(id);
+    }
+
+    @Override
+    public List<Email> findAllByFrom(String from) {
+        return emailRepository.findAllByFromContainingIgnoreCase(from);
     }
 }
