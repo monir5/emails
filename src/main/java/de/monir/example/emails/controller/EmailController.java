@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class EmailController {
             @ApiResponse(responseCode = "400", description = "Invalid Email supplied", content = @Content)
     })
     @PostMapping("/create")
-    public ResponseEntity<Email> create(@Parameter(description = "the full content of an Email", schema = @Schema(implementation = Email.class)) @RequestBody Email email) {
+    public ResponseEntity<Email> create(@Valid @Parameter(description = "the full content of an Email", schema = @Schema(implementation = Email.class)) @RequestBody Email email) {
         return new ResponseEntity<>(emailService.create(email), HttpStatus.CREATED);
     }
 
@@ -44,7 +45,7 @@ public class EmailController {
                     content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Emails.class))}),
             @ApiResponse(responseCode = "400", description = "Invalid Email supplied", content = @Content)
     })
-    public ResponseEntity<Emails> createBulk(@Parameter(description = "A list of Emails", schema = @Schema(implementation = Emails.class))@RequestBody Emails emails) {
+    public ResponseEntity<Emails> createBulk(@Valid @Parameter(description = "A list of Emails", schema = @Schema(implementation = Emails.class))@RequestBody Emails emails) {
         Emails savedEmails = new Emails();
         savedEmails.setEmails(emailService.createBulk(emails.getEmails()));
         return new ResponseEntity<>(savedEmails, HttpStatus.CREATED);
@@ -58,7 +59,7 @@ public class EmailController {
             @ApiResponse(responseCode = "404", description = "Email not found", content = @Content)
     })
     @PutMapping("/update/{emailId}")
-    public ResponseEntity<Email> update(@PathVariable Long emailId, @RequestBody EmailUpdateDTO emailUpdateDTO) {
+    public ResponseEntity<Email> update(@PathVariable Long emailId, @Valid @RequestBody EmailUpdateDTO emailUpdateDTO) {
         return new ResponseEntity<>(emailService.update(emailId, emailUpdateDTO), HttpStatus.OK);
     }
 

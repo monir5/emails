@@ -30,27 +30,37 @@ public class EmailServiceImpl implements EmailService{
 
     @Override
     public Email update(Long emailId, EmailUpdateDTO emailUpdateDTO) {
-        if (emailRepository.existsById(emailId) && State.DRAFT.equals(emailUpdateDTO.getState())) {
-            Email email = emailMapper.emailUpdateDTOToEmail(emailUpdateDTO);
-            return emailRepository.save(email);
+        Optional<Email> emailOptional = emailRepository.findById(emailId);
+        if (emailOptional.isEmpty()) {
+            throw new EmailNotFoundException("Email with id " + emailId + " is not found.");
         }
-        throw new EmailNotFoundException();
+        Email email = emailOptional.get();
+        if (State.DRAFT.equals(email.getState())) {
+            Email emailToSave = emailMapper.emailUpdateDTOToEmail(emailUpdateDTO);
+            emailToSave.setId(emailId);
+            return emailRepository.save(email);
+        } else {
+            throw new EmailNotFoundException("Email with id having state " + email.getState() + " is not allowed to update.");
+        }
+
     }
 
     @Override
     public void delete(Long emailId) {
         if (emailRepository.existsById(emailId)) {
            emailRepository.deleteById(emailId);
+        } else {
+            throw new EmailNotFoundException("Email with id " + emailId + " not found");
         }
-        throw new EmailNotFoundException();
     }
 
     @Override
     public void deleteBulk(List<Long> emailIds) {
         if (!emailIds.isEmpty()) {
             emailRepository.deleteAllById(emailIds);
+        } else {
+            throw new EmailNotFoundException("Emails with id " + emailIds + " not found");
         }
-        throw new EmailNotFoundException();
     }
 
     @Override

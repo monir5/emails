@@ -1,8 +1,15 @@
 package de.monir.example.emails.exception;
 
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class EmailNotFoundException  extends RuntimeException{
+    String message;
+    public EmailNotFoundException(String message) {
+        super(message);
+    }
 
+    public EmailNotFoundException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }
