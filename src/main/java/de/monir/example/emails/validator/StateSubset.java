@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface StateSubset {
     State[] anyOf();
-    public abstract String message() default "Invalid value. This is not permitted.";
-    public abstract Class<?>[] groups() default {};
-    public abstract Class<? extends Payload>[] payload() default {};
+    String message() default "Invalid value. This is not permitted.";
+    Class<?>[] groups() default {};
+    Class<? extends Payload>[] payload() default {};
 }
