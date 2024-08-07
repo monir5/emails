@@ -1,7 +1,9 @@
 package de.monir.example.emails.exception;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@Getter
 @NoArgsConstructor
 public class EmailNotAllowedToUpdateException extends RuntimeException {
     private String message;

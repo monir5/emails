@@ -32,7 +32,7 @@ public class EmailServiceImplTest {
     private EmailMapper emailMapper;
 
     @Test
-    public void update_email_success() throws Exception {
+    public void update_email_success() {
         // when
         Long emailId = 1L;
         Email email = EmailTestUtil.getDraftEmail();
@@ -47,7 +47,7 @@ public class EmailServiceImplTest {
     }
 
     @Test
-    public void update_email_failed_as_not_draft() throws Exception {
+    public void update_email_failed_as_not_draft() {
         Long emailId = 1L;
         Email email = EmailTestUtil.getSentEmail();
         EmailUpdateDTO emailUpdateDTO = EmailTestUtil.getEmailUpdateDTO();
@@ -58,7 +58,7 @@ public class EmailServiceImplTest {
     }
 
     @Test
-    public void update_email_failed_email_not_found() throws Exception {
+    public void update_email_failed_email_not_found() {
         //when
         Long emailId = 1L;
         EmailUpdateDTO emailUpdateDTO = EmailTestUtil.getEmailUpdateDTO();
