@@ -31,7 +31,6 @@ public class EmailControllerTest {
     @Test
     public void createEmail_success() throws Exception {
         // When
-        long emailId = 1L;
         Email email = getDraftEmail();
         Mockito.when(emailService.create(email)).thenReturn(email);
         RequestBuilder request = MockMvcRequestBuilders
@@ -49,7 +48,6 @@ public class EmailControllerTest {
     @Test
     public void createEmail_failed() throws Exception {
         // When
-        long emailId = 1L;
         Email email = getDraftEmail();
         Mockito.when(emailService.create(email)).thenReturn(email);
         RequestBuilder request = MockMvcRequestBuilders
