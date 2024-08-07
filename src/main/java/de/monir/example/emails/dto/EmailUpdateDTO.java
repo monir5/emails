@@ -16,6 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
+@Builder
 public class EmailUpdateDTO {
 
     @NotNull(message = "Email-From should not be null.")

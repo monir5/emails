@@ -1,6 +1,7 @@
 package de.monir.example.emails.service;
 
 import de.monir.example.emails.dto.EmailUpdateDTO;
+import de.monir.example.emails.exception.EmailNotAllowedToUpdateException;
 import de.monir.example.emails.exception.EmailNotFoundException;
 import de.monir.example.emails.mapper.EmailMapper;
 import de.monir.example.emails.model.Email;
@@ -40,7 +41,7 @@ public class EmailServiceImpl implements EmailService{
             emailToSave.setId(emailId);
             return emailRepository.save(email);
         } else {
-            throw new EmailNotFoundException("Email with id having state " + email.getState() + " is not allowed to update.");
+            throw new EmailNotAllowedToUpdateException("Email with id having state " + email.getState() + " is not allowed to update.");
         }
 
     }
