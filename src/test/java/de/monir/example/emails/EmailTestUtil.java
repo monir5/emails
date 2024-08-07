@@ -1,5 +1,7 @@
 package de.monir.example.emails;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.monir.example.emails.dto.EmailUpdateDTO;
 import de.monir.example.emails.model.Email;
 import de.monir.example.emails.model.EmailAddress;
@@ -54,5 +56,10 @@ public class EmailTestUtil {
                 .emailTo(getEmailTo())
                 .state(State.DRAFT)
                 .build();
+    }
+
+    public static String asJsonString(final Email email) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.writeValueAsString(email);
     }
 }
