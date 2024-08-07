@@ -1,7 +1,6 @@
 package de.monir.example.emails.service;
 
 
-import de.monir.example.emails.EmailTestUtil;
 import de.monir.example.emails.dto.EmailUpdateDTO;
 import de.monir.example.emails.exception.EmailNotAllowedToUpdateException;
 import de.monir.example.emails.exception.EmailNotFoundException;
@@ -17,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
+import static de.monir.example.emails.EmailTestUtil.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -35,8 +35,8 @@ public class EmailServiceImplTest {
     public void update_email_success() {
         // when
         Long emailId = 1L;
-        Email email = EmailTestUtil.getDraftEmail();
-        EmailUpdateDTO emailUpdateDTO = EmailTestUtil.getEmailUpdateDTO();
+        Email email = getDraftEmail();
+        EmailUpdateDTO emailUpdateDTO = getEmailUpdateDTO();
         Mockito.when(emailRepository.findById(emailId)).thenReturn(Optional.of(email));
         Mockito.when(emailMapper.emailUpdateDTOToEmail(emailUpdateDTO)).thenReturn(email);
         Mockito.when(emailRepository.save(Mockito.any(Email.class))).thenReturn(email);
@@ -49,8 +49,8 @@ public class EmailServiceImplTest {
     @Test
     public void update_email_failed_as_not_draft() {
         Long emailId = 1L;
-        Email email = EmailTestUtil.getSentEmail();
-        EmailUpdateDTO emailUpdateDTO = EmailTestUtil.getEmailUpdateDTO();
+        Email email = getSentEmail();
+        EmailUpdateDTO emailUpdateDTO = getEmailUpdateDTO();
         Mockito.when(emailRepository.findById(emailId)).thenReturn(Optional.of(email));
 
         // call and verify
@@ -61,7 +61,7 @@ public class EmailServiceImplTest {
     public void update_email_failed_email_not_found() {
         //when
         Long emailId = 1L;
-        EmailUpdateDTO emailUpdateDTO = EmailTestUtil.getEmailUpdateDTO();
+        EmailUpdateDTO emailUpdateDTO = getEmailUpdateDTO();
         Mockito.when(emailRepository.findById(emailId)).thenReturn(Optional.empty());
         // call and verify
         assertThrows(EmailNotFoundException.class, () -> emailService.update(emailId, emailUpdateDTO));
