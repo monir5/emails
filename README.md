@@ -15,7 +15,7 @@ Java 22, spring boot 3.2.8, PostgreSQL 16, Flyway, mapstruct, springdoc/swagger,
    ```
    export SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/emails_db
    export SPRING_DATASOURCE_USERNAME=admin
-   export SPRING_DATASOURCE_PASSWORD=secretPassword
+   export SPRING_DATASOURCE_PASSWORD=<secretPasswordWhatYouLike>
    ```
 4. **build & run:** <br>
    in command line go to the project root folder `cd ..` <br>
