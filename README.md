@@ -1,62 +1,60 @@
 # emails : 
 An Email Service exposes a REST API to execute CRUD operations. 
-## Technologies: 
+#### Technologies: 
 Java 22, spring boot 3.2.8, PostgreSQL 16, Flyway, mapstruct, springdoc/swagger, spring actuator, Docker
 
 ## Getting started with development
-## Source Code
-1. With `git clone https://github.com/monir5/emails` the comlete repository is cloned.
-2. Please install Postgresql 16 locally or run docker image.
-    ```cd docker```
-    Please create a file db.env as per instruction of db.env.sample file.
-    ```docker-compose -f docker-compose-postgresql.yml up -d```
-3. Set up three environment variables: 
-    SPRING_DATASOURCE_URL=<database_url> e.g. jdbc:postgresql://localhost:5432/<database> 
-    SPRING_DATASOURCE_USERNAME=<database_user> 
-    SPRING_DATASOURCE_PASSWORD=<password>
-4. build & run 
+#### Source Code
+1. Git Clone:\
+    `git clone https://github.com/monir5/emails`
+2. Database PostgreSQL 16: install locally or docker image (see below Docker section).
+3. Environment variables:\
+  `SPRING_DATASOURCE_URL=<database_url>` e.g. `jdbc:postgresql://localhost:5432/<database-name-same-in-db.env>`\
+  `SPRING_DATASOURCE_USERNAME=<database_user-same-in-db.env>`\
+  `SPRING_DATASOURCE_PASSWORD=<password-same-in-db.env>`
+4. build & run: in command line go to the project root folder
    ```./mvnw clean install```
    ```./mvnw spring-boot:run```
 
 #### Docker (optional)
-```./mvnw clean package```
-```cd docker```
-Please create a file db.env as per instruction of db.env.sample file. 
-```docker-compose -f docker-compose-postgresql.yml up -d```
-Please create a file api.env as per instruction of api.env.sample file.
-```docker-compose -f docker-compose-emails.yml up -d```
-Please create a file db-admin.env as per instruction of db-admin.env.sample file.
-```docker-compose -f docker-compose-pgadmin.yml up -d```
-To down/stop docker containers
-```docker-compose -f docker-compose-postgresql.yml down```
-```docker-compose -f docker-compose-emails.yml down```
-```docker-compose -f docker-compose-pgadmin.yml down```
+1. in command line go to the project root folder
+2. `./mvnw clean package`
+3. `cd docker`
+4. Please create a file db.env as per instruction of db.env.sample file. 
+5. `docker-compose -f docker-compose-postgresql.yml up -d`
+6. Please create a file api.env as per instruction of api.env.sample file.
+7. `docker-compose -f docker-compose-emails.yml up -d`
+8. Please create a file db-admin.env as per instruction of db-admin.env.sample file.
+9. `docker-compose -f docker-compose-pgadmin.yml up -d`
+
+#### To down/stop docker containers
+1. `docker-compose -f docker-compose-postgresql.yml down`
+2. `docker-compose -f docker-compose-emails.yml down`
+3. `docker-compose -f docker-compose-pgadmin.yml down`
 
 
-#### Now the following URLs are available.
-swagger ui: http://localhost:8080/swagger-ui/index.html
-api docs: http://localhost:8080/api-docs 
-health: http://localhost:8080/actuator/health
-pgadmin: http://localhost:8888/ 
+### Now the following URLs are available.
+1. swagger ui: http://localhost:8080/swagger-ui/index.html
+2. api docs: http://localhost:8080/api-docs 
+3. health: http://localhost:8080/actuator/health
+4. pgadmin: http://localhost:8888/ 
 
-##### Endpoints: 
-POST    /emails/create
-POST    /emails/create/bulk
-PUT     /emails/update/{emailId}
-DELETE  /emails/delete/{emailId}
-DELETE  /emails/delete/bulk
-GET     /emails/{emailId}
-GET     /emails/all
-GET     /emails/from/{emailFrom}
+#### API Endpoints: 
+1. POST    /emails/create
+2. POST    /emails/create/bulk
+3. PUT     /emails/update/{emailId}
+4. DELETE  /emails/delete/{emailId}
+5. DELETE  /emails/delete/bulk
+6. GET     /emails/{emailId}
+7. GET     /emails/all
+8. GET     /emails/from/{emailFrom}
 
-
-
-
-#######################################################################################################################
+   
+# Project Description
 This is a use case to replicate the behavior of an email server. Endpoints are under the route "/emails"
 and the information corresponding to the email contents are being stored in a database.
 
-#### Requirements
+### Requirements
 - The probable status of an Email: DRAFT, SENT, DELETED, SPAM
 - The basic information of an Email, such as, from, to, etc., update dates are being stored in the database.
 - For inserting, query and delete the option of bulk operation are available.
