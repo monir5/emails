@@ -1,4 +1,5 @@
-## it is not working yet....
+## it is not working yet due to Flyway Configuration early datasource connection test while packaging
+## after Spring boot 2.5 Flyway defer Initialization may not be working properly. Need research.
 
 #version: '3.8'
 #services:

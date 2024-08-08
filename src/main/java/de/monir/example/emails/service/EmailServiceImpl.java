@@ -39,7 +39,7 @@ public class EmailServiceImpl implements EmailService{
         if (State.DRAFT.equals(email.getState())) {
             Email emailToSave = emailMapper.emailUpdateDTOToEmail(emailUpdateDTO);
             emailToSave.setId(emailId);
-            return emailRepository.save(email);
+            return emailRepository.save(emailToSave);
         } else {
             throw new EmailNotAllowedToUpdateException("Email with id having state " + email.getState() + " is not allowed to update.");
         }
