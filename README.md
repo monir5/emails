@@ -18,7 +18,7 @@ Java 22, spring boot 3.2.8, PostgreSQL 16, Flyway, mapstruct, springdoc/swagger,
    export SPRING_DATASOURCE_PASSWORD=secretPassword
    ```
 4. **build & run:** <br>
-   in command line go to the project root folder <br>
+   in command line go to the project root folder `cd ..` <br>
    `./mvnw clean install`<br>
    `./mvnw spring-boot:run`
 ### Docker (optional)
@@ -46,7 +46,7 @@ Java 22, spring boot 3.2.8, PostgreSQL 16, Flyway, mapstruct, springdoc/swagger,
 1. swagger ui: http://localhost:8080/swagger-ui/index.html
 2. api docs: http://localhost:8080/api-docs 
 3. health: http://localhost:8080/actuator/health
-4. pgadmin: http://localhost:8888/ 
+4. pgadmin4 (if docker compose PGAdmin4 is orchestrated): http://localhost:8888/ 
 #### API Endpoints: 
 1. POST    /emails/create
 2. POST    /emails/create/bulk
