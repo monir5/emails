@@ -1,0 +1,18 @@
+#version: '3.8'
+services:
+  api:
+    image: 'emails:0.0.1-SNAPSHOT'
+    container_name: emails-api
+    restart: always
+    ports:
+      - 8080:8080
+    build: '../.'
+    env_file:
+      - api.env
+    networks:
+      - api-network
+      - db-network
+
+networks:
+  api-network:
+  db-network:

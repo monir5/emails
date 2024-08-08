@@ -1,0 +1,35 @@
+## it is not working yet....
+
+#version: '3.8'
+#services:
+#  db:
+#    image: postgres:16-alpine
+#    container_name: emails-pgdb
+#    restart: always
+#    ports:
+#      - 5432:5432
+#    volumes:
+#      - db:/var/lib/postgresql/data
+#      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+#    env_file:
+#      - ./db.env
+#    networks:
+#      - api-network
+#  api:
+#    image: emails:0.0.1-SNAPSHOT
+#    container_name: emails-api
+#    depends_on:
+#      - db
+#    restart: always
+#    ports:
+#      - 8080:8080
+#    build: '../.'
+#    env_file:
+#      - ./api.env
+#    networks:
+#      - api-network
+#volumes:
+#  db:
+#    driver: local
+#networks:
+#  api-network:

@@ -1,0 +1,23 @@
+#version: '3.8'
+services:
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - 8888:80
+    env_file:
+      - db-admin.env
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    networks:
+      - pgdb-network
+      - db-network
+
+volumes:
+  pgadmin:
+    driver: local
+
+networks:
+  pgdb-network:
+  db-network:
