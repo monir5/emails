@@ -1,10 +1,18 @@
 ## emails : An Email Service exposes a REST API to execute CRUD operations. 
 #### Technologies: 
 Java 22, spring boot 3.2.8, PostgreSQL 16, Flyway, mapstruct, springdoc/swagger, spring actuator, Docker
+
+## Quick Start: 
+Docker Desktop must be pre installed. otherwise please go to **Getting started with development**.<br>
+    `git clone https://github.com/monir5/emails.git`<br>
+    `cd emails`<br>
+    `chmod u+x quick-start.sh`<br>
+    `./quick-start.sh`
+
 ### Getting started with development
 #### Source Code
 1. **Git Clone:**<br>
-   `git clone https://github.com/monir5/emails`
+   `git clone https://github.com/monir5/emails.git`
 2. **Database PostgreSQL 16:** <br>
    install locally or docker image (see below `Docker Compose Database` section).
 3. **Environment variables:**<br>
