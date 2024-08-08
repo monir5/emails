@@ -9,7 +9,7 @@ Java 22, spring boot 3.2.8, PostgreSQL 16, Flyway, mapstruct, springdoc/swagger,
 2. Please install Postgresql 16 locally or run docker image.
     ```cd docker```
     Please create a file db.env as per instruction of db.env.sample file.
-    ```docker-compose -f docker-compose-postgres.yml up -d```
+    ```docker-compose -f docker-compose-postgresql.yml up -d```
 3. Set up three environment variables: 
     SPRING_DATASOURCE_URL=<database_url> e.g. jdbc:postgresql://localhost:5432/<database> 
     SPRING_DATASOURCE_USERNAME=<database_user> 
@@ -22,13 +22,13 @@ Java 22, spring boot 3.2.8, PostgreSQL 16, Flyway, mapstruct, springdoc/swagger,
 ```./mvnw clean package```
 ```cd docker```
 Please create a file db.env as per instruction of db.env.sample file. 
-```docker-compose -f docker-compose-postgres.yml up -d```
+```docker-compose -f docker-compose-postgresql.yml up -d```
 Please create a file api.env as per instruction of api.env.sample file.
 ```docker-compose -f docker-compose-emails.yml up -d```
 Please create a file db-admin.env as per instruction of db-admin.env.sample file.
 ```docker-compose -f docker-compose-pgadmin.yml up -d```
 To down/stop docker containers
-```docker-compose -f docker-compose-postgres.yml down```
+```docker-compose -f docker-compose-postgresql.yml down```
 ```docker-compose -f docker-compose-emails.yml down```
 ```docker-compose -f docker-compose-pgadmin.yml down```
 
