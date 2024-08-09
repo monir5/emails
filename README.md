@@ -14,7 +14,8 @@ Docker Desktop must be pre installed. otherwise please go to **Getting started w
 1. **Git Clone:**<br>
    `git clone https://github.com/monir5/emails.git`
 2. **Database PostgreSQL 16:** <br>
-   install locally or docker image (see below `Docker Compose Database` section).
+   install locally or take existing one. Create a empty database and user.<br>
+   Alternatively, you may use docker image (see below `Docker Compose Database` section).
 3. **Environment variables:**<br>
   `SPRING_DATASOURCE_URL=<database_url>` e.g. `jdbc:postgresql://localhost:5432/<database-name-same-in-db.env>`<br>
   `SPRING_DATASOURCE_USERNAME=<database_user-same-in-db.env>`<br>
