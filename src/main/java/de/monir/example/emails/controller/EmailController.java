@@ -1,5 +1,6 @@
 package de.monir.example.emails.controller;
 
+import de.monir.example.emails.annotation.RestApiController;
 import de.monir.example.emails.dto.EmailUpdateDTO;
 import de.monir.example.emails.model.Email;
 import de.monir.example.emails.model.Emails;
@@ -23,6 +24,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/emails")
 @RequiredArgsConstructor
+@RestApiController
 public class EmailController {
 
     private final EmailService emailService;
