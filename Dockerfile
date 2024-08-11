@@ -9,5 +9,5 @@ FROM eclipse-temurin:22-alpine
 RUN mkdir /app
 #COPY --from=build /home/app/target/emails-0.0.1-SNAPSHOT.jar /app/emails-0.0.1-SNAPSHOT.jar
 COPY target/emails-0.0.1-SNAPSHOT.jar /app/emails-0.0.1-SNAPSHOT.jar
-EXPOSE 8080
+EXPOSE 8080, 8081
 ENTRYPOINT ["java", "-jar", "/app/emails-0.0.1-SNAPSHOT.jar"]
