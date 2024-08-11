@@ -24,6 +24,7 @@ export SPRING_DATASOURCE_PASSWORD=$db_pass
 
 cd docker
 [ -e api.env ] && rm api.env
+echo "# Instead of Docker, in host: SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/emails_db" >> api.env
 echo "SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/emails_db" >> api.env
 echo "SPRING_DATASOURCE_USERNAME="$db_user >> api.env
 echo "SPRING_DATASOURCE_PASSWORD="$db_pass >> api.env

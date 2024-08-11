@@ -27,7 +27,7 @@ public class GlobalControllerExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorModel> handleException(HttpServletRequest request, Exception ex) {
         ErrorModel error = new ErrorModel(HttpStatus.BAD_REQUEST, "Bad Request", ex.getMessage());
-        LOGGER.error("InvalidEmailAddressException handler executed -> {} response - ID: {} ", error.getHttpStatus(), error.getErrorId(), ex);
+        LOGGER.error("Exception handler executed -> {} response - ID: {} ", error.getHttpStatus(), error.getErrorId(), ex);
         return ResponseEntity.status(error.getHttpStatus()).body(error);
     }
 
@@ -42,7 +42,7 @@ public class GlobalControllerExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<ErrorModel> handleEmailNotFoundException(HttpServletRequest request, RuntimeException ex) {
         ErrorModel error = new ErrorModel(HttpStatus.BAD_REQUEST, "Email Not Found", ex.getMessage());
-        LOGGER.error("InvalidEmailAddressException handler executed -> {} response - ID: {} ", error.getHttpStatus(), error.getErrorId(), ex);
+        LOGGER.error("EmailNotFoundException handler executed -> {} response - ID: {} ", error.getHttpStatus(), error.getErrorId(), ex);
         return ResponseEntity.status(error.getHttpStatus()).body(error);
     }
 

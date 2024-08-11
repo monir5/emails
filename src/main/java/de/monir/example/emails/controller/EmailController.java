@@ -23,10 +23,9 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/emails")
 @RequiredArgsConstructor
 @RestApiController
-//@Validated
+@Validated
 public class EmailController {
 
     private final EmailService emailService;
