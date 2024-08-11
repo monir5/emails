@@ -1,20 +1,8 @@
 package de.monir.example.emails.exception;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
-@Getter
-@NoArgsConstructor
 public class EmailNotAllowedToUpdateException extends RuntimeException {
-    private String message;
-
-    public EmailNotAllowedToUpdateException(String message) {
-        super(message);
-        this.message = message;
-    }
-
-    public EmailNotAllowedToUpdateException(String message, Throwable cause) {
-        super(message, cause);
-        this.message = message;
-    }
+    public EmailNotAllowedToUpdateException(@Nullable String message) {super(message);}
+    public EmailNotAllowedToUpdateException(@Nullable String message, @Nullable Throwable cause) {super(message, cause);}
 }

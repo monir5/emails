@@ -3,7 +3,7 @@ package de.monir.example.emails.dto;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import de.monir.example.emails.model.EmailAddress;
 import de.monir.example.emails.model.State;
-import de.monir.example.emails.validator.StateSubset;
+import de.monir.example.emails.validator.StateSubsetValidate;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -43,6 +43,6 @@ public class EmailUpdateDTO {
     private String body;
 
     @NotNull(message = "The state of email should not be null.")
-    @StateSubset(anyOf = {State.DRAFT, State.SENT, State.DELETED, State.SPAM}, message = "The state of the email should be one of these four states DRAFT(0), SENT(1), DELETED(2) and SPAM(3).")
+    @StateSubsetValidate(anyOf = {State.DRAFT, State.SENT, State.DELETED, State.SPAM}, message = "The state of the email should be one of these four states DRAFT(0), SENT(1), DELETED(2) and SPAM(3).")
     private State state;
 }

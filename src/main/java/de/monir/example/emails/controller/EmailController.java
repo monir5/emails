@@ -15,6 +15,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -25,6 +26,7 @@ import java.util.Optional;
 @RequestMapping("/emails")
 @RequiredArgsConstructor
 @RestApiController
+//@Validated
 public class EmailController {
 
     private final EmailService emailService;
@@ -36,7 +38,9 @@ public class EmailController {
             @ApiResponse(responseCode = "400", description = "Invalid Email supplied", content = @Content)
     })
     @PostMapping("/create")
-    public ResponseEntity<Email> create(@Valid @Parameter(description = "the full content of an Email", schema = @Schema(implementation = Email.class)) @RequestBody Email email) {
+    public ResponseEntity<Email> create(
+            @Parameter(description = "the full content of an Email", schema = @Schema(implementation = Email.class))
+            @Validated @RequestBody Email email) {
         return new ResponseEntity<>(emailService.create(email), HttpStatus.CREATED);
     }
 

@@ -10,7 +10,8 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = {StateSubsetValidator.class})
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface StateSubset {
+public @interface StateSubsetValidate {
+    boolean required() default true;
     State[] anyOf();
     String message() default "Invalid value. This is not permitted.";
     Class<?>[] groups() default {};

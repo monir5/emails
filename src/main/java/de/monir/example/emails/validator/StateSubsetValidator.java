@@ -6,17 +6,23 @@ import jakarta.validation.ConstraintValidatorContext;
 
 import java.util.Arrays;
 
-public class StateSubsetValidator implements ConstraintValidator<StateSubset, State> {
+public class StateSubsetValidator implements ConstraintValidator<StateSubsetValidate, State> {
 
     private State[] subset;
+    private boolean required;
 
     @Override
-    public void initialize(StateSubset constraint) {
+    public void initialize(StateSubsetValidate constraint) {
+        ConstraintValidator.super.initialize(constraint);
         this.subset = constraint.anyOf();
+        this.required = constraint.required();
     }
 
     @Override
     public boolean isValid(State value, ConstraintValidatorContext context) {
-        return value == null || Arrays.asList(subset).contains(value);
+        if (!this.required && value == null) {
+            return true;
+        }
+        return Arrays.asList(subset).contains(value);
     }
 }
