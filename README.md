@@ -52,7 +52,7 @@ Docker Desktop must be pre installed. otherwise please go to **Getting started w
 ### Now the following URLs are available.
 1. swagger ui: http://localhost:8080/swagger-ui/index.html
 2. api docs: http://localhost:8080/api-docs 
-3. health: http://localhost:8080/actuator/health
+3. health: http://localhost:8081/actuator/health
 4. pgadmin4 (if docker compose PGAdmin4 is orchestrated): http://localhost:8888/ 
 #### API Endpoints: 
 1. POST    /emails/create
