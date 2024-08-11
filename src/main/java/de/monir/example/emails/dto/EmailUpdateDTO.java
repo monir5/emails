@@ -3,6 +3,7 @@ package de.monir.example.emails.dto;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import de.monir.example.emails.model.EmailAddress;
 import de.monir.example.emails.model.State;
+import de.monir.example.emails.validator.EmailAddressSetValidate;
 import de.monir.example.emails.validator.StateSubsetValidate;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -22,16 +23,19 @@ public class EmailUpdateDTO {
     @NotNull(message = "Email-From should not be null.")
     @NotEmpty(message = "Email-From should not be empty.")
     @Size(min = 10, max = 100, message = "Email length should have less than or equal to 100 characters.")
-    @Email
+    @Email(regexp = "^(?=.{1,64}@)[\\p{L}0-9_-]+(\\.[\\p{L}0-9_-]+)*@[^-][\\p{L}0-9-]+(\\.[\\p{L}0-9-]+)*(\\.[\\p{L}]{2,})$",
+            message = "Please provide a valid email address for the field of Email-From.")
     @JsonAlias(value = "emailFrom")
     private String from;
 
     @NotNull(message = "EmailTo should not be null.")
     @NotEmpty(message = "The list of email-To should not be empty.")
+    @EmailAddressSetValidate(message = "All Email addresses under the list must be valid.")
     @JsonAlias(value = "emailTo")
     private Set<EmailAddress> emailTo = new HashSet<>();
 
     @JsonAlias(value = "emailCC")
+    @EmailAddressSetValidate(required = false, message = "All Email addresses under the list of email-CC must be valid.")
     private Set<EmailAddress> emailCC = new HashSet<>();
 
     @JsonAlias("emailSubject")

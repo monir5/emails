@@ -3,8 +3,6 @@ package de.monir.example.emails.validator;
 import de.monir.example.emails.model.EmailAddress;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import org.hibernate.validator.internal.engine.constraintvalidation.ConstraintValidatorContextImpl;
-import org.hibernate.validator.internal.metadata.descriptor.ConstraintDescriptorImpl;
 
 import java.util.Set;
 import java.util.regex.Pattern;

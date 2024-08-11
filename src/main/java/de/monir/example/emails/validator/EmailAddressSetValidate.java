@@ -1,6 +1,5 @@
 package de.monir.example.emails.validator;
 
-import de.monir.example.emails.model.EmailAddress;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
