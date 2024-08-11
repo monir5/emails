@@ -45,11 +45,9 @@ Docker Desktop must be pre installed. otherwise please go to **Getting started w
    Please create a file `docker/db-admin.env` as per instruction of `docker/db-admin.env.sample` file.<br>
    `cd docker`<br>
    `docker-compose -f docker-compose-pgadmin.yml up -d`
-#### To down/stop docker containers
+#### To down/clean docker containers
 1. `cd docker`
-2. `docker-compose -f docker-compose-postgresql.yml down`
-3. `docker-compose -f docker-compose-emails.yml down`
-4. `docker-compose -f docker-compose-pgadmin.yml down`
+2. `./docker-down.sh` or `./docker-clean.sh`
 
 ### Now the following URLs are available.
 1. swagger ui: http://localhost:8080/swagger-ui/index.html
