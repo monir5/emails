@@ -44,12 +44,14 @@ public class Email {
     @JsonAlias(value = "emailTo")
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name = "email_address_to", joinColumns = @JoinColumn(name = "email_id"))
+    @Builder.Default
     private Set<EmailAddress> emailTo = new HashSet<>();
 
     @JsonAlias(value = "emailCC")
     @EmailAddressSetValidate(required = false, message = "All Email addresses under the list of email-CC must be valid.")
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name = "email_address_cc", joinColumns = @JoinColumn(name = "email_id"))
+    @Builder.Default
     private Set<EmailAddress> emailCC = new HashSet<>();
 
     @JsonAlias("emailSubject")
